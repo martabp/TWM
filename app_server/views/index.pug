@@ -1,6 +1,12 @@
 extends layout
 
 block content
+  h1= title
+  p Bienvenido a #{title}
+
+  p Esta es la página principal de la aplicación.
+
+  a(href="/about") Ir a la página About
   .container-fluid.bg-success.text-white.min-vh-100.d-flex.align-items-center
     .container
       .row.align-items-center
