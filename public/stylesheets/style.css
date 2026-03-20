@@ -1,8 +1,46 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #2fa4b6;
+  color: white;
+}
+
+.navbar.bg-danger {
+  background-color: #b30d2f !important;
+}
+
+.site-title {
+  font-size: 3rem;
+  font-weight: 300;
+  color: white;
+}
+
+.site-title small {
+  font-size: 1.5rem;
+  color: #d9f4f7;
+}
+
+.location-card,
+.panel-box,
+.sidebar-box {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.map-placeholder {
+  background: #ddd;
+  color: #333;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 a {
-  color: #00B7FF;
+  color: #ffe082;
+}
+
+a:hover {
+  color: #fff3bf;
 }

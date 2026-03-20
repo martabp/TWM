@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  .row
+    .col-12
+      h1.site-title Starcups
+      p ★★★☆☆
+      p 125 High Street, Reading, RG6 1PS
+
+  .row
+    .col-md-4
+      .panel-box.mb-3
+        h3 Opening hours
+        p Monday - Friday : 7:00am - 7:00pm
+        p Saturday : 8:00am - 5:00pm
+        p Sunday : closed
+
+      .panel-box.mb-3
+        h3 Facilities
+        p
+          span.badge.bg-warning.text-dark.me-2 Hot drinks
+          span.badge.bg-warning.text-dark.me-2 Food
+          span.badge.bg-warning.text-dark Premium wifi
+
+    .col-md-4
+      .panel-box.mb-3
+        h3 Location map
+        .map-placeholder Mapa aquí
+
+    .col-md-4
+      .sidebar-box
+        p Starcups is on Loc8r because it has accessible wifi and space to sit down.
+        p
+          a.btn.btn-danger(href='/location/review/new') Add review

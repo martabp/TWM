@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  .row
+    .col-12
+      h1.site-title
+        | #{pageHeader.title}
+        small.ms-2 #{pageHeader.strapline}
+      hr
+
+  .row
+    .col-lg-8
+      .card.location-card.mb-4
+        .card-body
+          h4.card-title
+            a.text-decoration-none(href='/location') Starcups
+            span.ms-2 ★★★☆☆
+            span.badge.rounded-pill.bg-danger.float-end 100m
+          p.card-text 125 High Street, Reading, RG6 1PS
+          p
+            span.badge.bg-warning.text-dark.me-2 Hot drinks
+            span.badge.bg-warning.text-dark.me-2 Food
+            span.badge.bg-warning.text-dark Premium wifi
+
+    .col-lg-4
+      .sidebar-box
+        p= sidebar
