@@ -61,7 +61,7 @@ actividad1
 1. Clonar el repositorio:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone git@github.com:martabp/TWM.git
 ```
 
 2. Acceder a la carpeta del proyecto:
