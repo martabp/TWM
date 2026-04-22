@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .container-fluid.bg-success.text-white.py-5(style='min-height: 100vh;')
+    .row.align-items-center.h-100
+      .col-md-6.ps-5
+        h1.display-1 Express
+        p.fs-2 Welcome to Express
+        p Esta es la página principal de la aplicación.
+        a.btn.btn-light.mt-3(href='/about') Ir a la página About
+
+      .col-md-6.text-center
+        img.img-fluid(src='/images/restaurante.jpg', alt='Imagen', style='max-width: 80%;')

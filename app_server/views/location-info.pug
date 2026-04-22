@@ -1,0 +1,87 @@
+extends layout
+
+block content
+  .hero.hero-small
+    .container
+      h1= location.name
+      p Consulta la información, el horario y las reseñas del local
+
+  .container.detail-main
+    .detail-content
+      .card.detail-card
+        .detail-header
+          h2= location.name
+
+          if location.rating
+            .rating
+              - for (var i = 1; i <= (location.rating || 0); i++)
+                | ★
+              - for (i = (location.rating || 0); i < 5; i++)
+                | ☆
+
+        p.address= location.address
+
+        if location.facilities && location.facilities.length
+          .detail-section
+            h3 Servicios
+            .tags
+              each facility in location.facilities
+                span= facility
+
+        .detail-section
+          h3 Horario
+          if location.openingTimes && location.openingTimes.length
+            .opening-list
+              each time in location.openingTimes
+                .opening-item
+                  strong #{time.days}:
+                  |  
+                  if time.closed
+                    span.closed Cerrado
+                  else
+                    span #{time.opening} - #{time.closing}
+          else
+            p.muted No hay horario disponible.
+
+      .card.review-card
+        .section-header
+          h2 Reseñas
+
+        .section-action
+          a.btn-primary-custom(href=`/location/${location._id}/review/new`) Añadir reseña
+
+        if location.reviews && location.reviews.length
+          .reviews-list
+            each review in location.reviews
+              .review-item
+                .review-top
+                  .review-stars
+                    - for (var i = 1; i <= (review.rating || 0); i++)
+                      | ★
+                    - for (i = (review.rating || 0); i < 5; i++)
+                      | ☆
+                  .review-meta
+                    strong.review-author= review.author
+                    if review.createdOn
+                      span.review-date= new Date(review.createdOn).toLocaleDateString()
+
+                p.review-text= review.reviewText
+        else
+          p.muted No hay reseñas todavía.
+
+    .detail-sidebar
+      .card.sidebar-card
+        h3 Información
+
+        .info-block
+          strong Dirección
+          p= location.address
+
+        .info-block
+          strong Rating
+          p= location.rating || 0
+
+        if location.facilities && location.facilities.length
+          .info-block
+            strong Servicios
+            p= location.facilities.join(', ')

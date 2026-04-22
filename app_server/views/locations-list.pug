@@ -1,0 +1,91 @@
+extends layout
+
+block content
+  // LEAFLET CSS
+  link(
+    rel='stylesheet',
+    href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+    integrity='sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=',
+    crossorigin=''
+  )
+
+  // HERO
+  .hero
+    .container
+      h1 Loc8r
+      p Encuentra sitios para trabajar con wifi cerca de ti
+
+      form.search-box(method='get', action='/')
+        input(
+          type='text',
+          name='search',
+          placeholder='Buscar por ubicación, barrio o dirección...'
+          value=search
+        )
+        button(type='submit') 🔍
+
+      .geo-actions
+        button#btn-geolocate.geo-btn(type='button') Usar mi ubicación
+
+      p#geo-message.geo-message
+
+  // CONTENIDO PRINCIPAL
+  .container.main
+    // LISTADO
+    .list
+      #location-results
+        if message
+          .card
+            h2= message
+
+        if locations && locations.length
+          each location in locations
+            .card
+              h2
+                a(href=`/location/${location._id}`)= location.name
+
+                if location.distance !== null && location.distance !== undefined
+                  span.distance
+                    if location.distance > 1000
+                      | #{(location.distance / 1000).toFixed(1)} km
+                    else
+                      | #{Math.round(location.distance)} m
+
+              p.address= location.address
+
+              if location.rating
+                p.rating ⭐ #{location.rating}
+
+              if location.facilities && location.facilities.length
+                .tags
+                  each facility in location.facilities
+                    span= facility
+        else if !message
+          .card
+            h2 No hay lugares cercanos
+            p.address Prueba más tarde o revisa la ubicación.
+
+    // SIDEBAR
+    .sidebar
+      .card.sidebar-card
+        h3 Mapa de ubicaciones
+        #map(style='height: 400px; width: 100%; border-radius: 12px;')
+
+        hr
+
+        h4 Consejo
+        p.address Activa la ubicación del navegador para centrar la búsqueda cerca de ti.
+
+  // PASAR DATOS AL NAVEGADOR
+  script.
+    window.locationsData = !{JSON.stringify(locations || [])};
+
+  // LEAFLET JS
+  script(
+    src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+    integrity='sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
+    crossorigin=''
+  )
+
+  // SCRIPT GEOLOCALIZACIÓN + MAPA
+  script(src='/javascripts/location.js')

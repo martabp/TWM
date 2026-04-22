@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  .hero.hero-small
+    .container
+      h1 Añadir reseña
+      p Comparte tu experiencia sobre este lugar
+
+  .container.form-container
+    .form-card
+      if error
+        .form-error= error
+
+      form(method='post', action='/location/' + locationid + '/review/new')
+        
+        .form-group
+          label(for='name') Nombre
+          input#name.form-input(type='text', name='name', placeholder='Tu nombre')
+
+        .form-group
+          label(for='rating') Puntuación
+          select#rating.form-input(name='rating')
+            option(value='') Selecciona una puntuación
+            option(value='5') ⭐⭐⭐⭐⭐ (5)
+            option(value='4') ⭐⭐⭐⭐ (4)
+            option(value='3') ⭐⭐⭐ (3)
+            option(value='2') ⭐⭐ (2)
+            option(value='1') ⭐ (1)
+
+        .form-group
+          label(for='review') Reseña
+          textarea#review.form-input(name='review', rows='5', placeholder='Escribe tu opinión...')
+
+        button.btn-primary-custom(type='submit') Enviar reseña
